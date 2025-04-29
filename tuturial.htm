@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Courses and Designers</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to Bootstrap Icons CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+.translate{
+    display: flex;
+    align-items: center;
+}
+.translate img{
+    width: 50px;
+    border-radius: 35px;  
+}
+.translate2{
+    padding: 10px;
+}
+.translate2 span{
+    display: block;
+    font-size: 13px;
+   
+}
+.translate2 .tagname{
+    font-size: 20px;
+    font-weight: 700;
+}
+.views{
+    position: absolute;
+    right: 5%;
+    padding: 10px;
+    top: 10%;
+    margin: 10px;
+    z-index: 10000;
+    background: red;
+}
+
+  
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* General Styling */
+    :root {
+            --card_width: 250px;
+            --row_increment: 10px;
+            --card_border_radius: 16px;
+            --card_small: 26;
+            --card_medium: 33;
+            --card_large: 45;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+.navbar {
+    width: 80%;
+    margin: 0% auto; /* Center the navbar */
+    display: flex;
+    left: 30%;
+    transform: translateX(-25%);
+    justify-content: space-between;
+    align-items: center;
+    padding:8px 20px;
+    background-color: transparent; /* Initially no background color */
+    transition: all 0.3s ease; /* Smooth transition for sticky effect */
+    position: fixed; /* Non-sticky default position */
+    z-index: 10000000;
+    font-family: poppins;
+    border-bottom: 1px solid rgba(1, 1, 1, 0.492);
+    border-radius: 1px;
+}
+
+/* Sticky Navbar */
+.sticky {
+    position: fixed;
+    top: 0;
+    transform: translateX(0%);
+    left: 0;
+    width: 100%; /* Full width when sticky */
+    background-color: #fff; /* Add background color on scroll */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Add a shadow for visual effect */
+}
+.sticky .search-container{
+
+}
+.sticky .search-input{
+    border-radius:20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    outline: none;
+}
+/* Navigation Links Styling */
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333333ef;
+    font-size: 16px;
+    font-weight: 600;
+}
+.imbr{
+    border-radius: 30px;
+}
+/* Search Container Styling */
+.search-container {
+position: relative;
+}
+.search-icon{
+
+}
+#search_button{
+    position: absolute;
+    top: 2%;
+    background-color: #d8503d;
+    padding: 5px 12px;
+    right: -20px;
+    border-radius:0px 20px 20px 0px;
+    transform: translate(-50%);
+    color: white !important;
+}
+.mobile{
+display:none;
+}
+.search-input {
+    border: none;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius:20px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.516);
+}
+
+.search-icon {
+    cursor: pointer;
+}
+.item_side{
+    display: flex;
+    width: 10%;
+
+}
+.blog-details{
+
+
+}
+.blog-title{
+    padding: 10px;
+    text-align: center;
+    line-height: 50px;
+    font-family: poppins;
+}
+.avatar img{
+width: 30px;
+border-radius: 50px;
+height: 25px !important;
+}
+.avatar span:nth-child(1){
+    font-size: 18px;
+    margin-top: 2%;
+    font-weight: 600;
+}
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        display: none; /* Initially hidden */
+        background-color: #fff;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links.show {
+        display: flex; /* Show menu when toggled */
+    }
+
+    .search-container {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* Hamburger Menu Icon */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+}
+
+/* Show hamburger menu on small screens */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+    .nav-links {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .search-container {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+        /* Sticky Navbar */
+div.gradient-div{
+    padding-top: 10% ;
+}
+
+        @media (max-width: 768px) {
+            .navbar-collapse {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .navbar-brand {
+                flex: 1;
+            }
+            .navbar-toggler {
+                flex: 1;
+            }
+        }
+
+        /* Placeholder Content */
+        /* section {
+            height: 100vh;
+            padding: 20px;
+            text-align: center;
+        } */
+  /* Container with gradient background */
+.gradient-div {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 equal-width columns */
+    grid-template-rows: auto; /* Adjust row size automatically */
+    gap: 20px;
+    height: auto !important;
+    background: linear-gradient(to bottom, #f7ede4, #ffffff);
+    padding: 20px;
+}
+
+/* Grid item styling */
+.grid-item {
+    padding: 10px;
+
+
+    text-align: center;
+}
+.grid-item img{
+
+    height: 400px;
+}
+
+/* First item (image with content overlay) */
+.item-1 {
+    grid-row: span 2; /* Spans 2 rows */
+    background-size: cover;
+    color: white;
+    position: relative;
+}
+
+.item-1 .content-overlay {
+    position: absolute;
+    top: 35%;
+    left: 10px;
+    width: 50%;
+    z-index: 100;
+    border-radius: 0px 30px 0px 30px;
+    padding: 20px 12px;
+    background-color: rgba(11, 0, 0, 0.879);
+
+}
+.item-4 {
+    position: relative;
+}
+.item-4 .content-overlay{
+    position: absolute;
+    background-color: rgba(11, 0, 0, 0.879);
+    border-radius: 0px 30px 0px 30px;
+   right: 25%;
+   padding: 20px 12px;
+   bottom: 10%;
+   width: 70%;
+   color: white;
+}
+.item-1 .content-overlay span{
+    font-size: 20px;
+
+}
+.item-1 .content-overlay small,.item-1 .content-overlay span,.item-4 .content-overlay small,.item-4 .content-overlay span{
+    text-align: left;
+    display: block;
+    font-family: poppins;
+    line-height: 2px;
+}
+
+/* Second item (content spanning columns 2 to 4) */
+.item-2 {
+    grid-column: 2 / 4; /* Spans from column 2 to column 4 */
+
+}
+
+/* Third item (content spanning columns 4 to 5) */
+.item-3 {
+    grid-column: 4 / 6; /* Spans from column 4 to column 5 */
+
+}
+
+/* Fourth item (content spanning from row 2 to column 3) */
+.item-4 {
+    grid-row: 2; /* Starts from row 2 */
+    grid-column: 2 / 4; /* Spans from column 2 to column 3 */
+
+}
+
+/* Fifth item (spans from row 1 to row 2, similar to the first item) */
+.item-5 {
+    grid-row: span 2; /* Spans from row 1 to row 2 */
+
+}
+.blog_list{
+    width: 80%;
+    margin: 0px auto;
+    padding: 10px;
+}
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .gradient-div {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns on medium screens */
+    }
+
+    .item-1 {
+        grid-row: span 2; /* Spans 2 rows */
+    }
+
+    .item-2 {
+        grid-column: 2 / 4; /* Spans from column 2 to 3 */
+    }
+
+    .item-3 {
+        grid-column: 3 / 5; /* Spans from column 3 to 5 */
+    }
+
+    .item-4 {
+        grid-row: 2; /* Starts from row 2 */
+        grid-column: 2 / 5; /* Spans from column 1 to 2 */
+    }
+
+    .item-5 {
+        grid-row: span 2; /* Spans from row 1 to row 2 */
+        grid-column: 1 / 2; /* Takes the first column */
+    }
+}
+
+@media (max-width: 992px) {
+    .gradient-div {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on smaller screens */
+    }
+
+    .item-1 {
+        grid-column: span 3; /* Spans all 3 columns */
+    }
+
+    .item-2 {
+        grid-column: span 3; /* Takes up all columns */
+    }
+
+    .item-3 {
+        grid-column: span 3; /* Takes up all columns */
+    }
+
+    .item-4 {
+        grid-column: span 3; /* Takes up all columns */
+    }
+
+    .item-5 {
+        grid-column: span 3; /* Takes up all columns */
+    }
+}
+
+@media (max-width: 768px) {
+    .gradient-div {
+        grid-template-columns: 1fr; /* 1 column on small screens */
+    }
+
+    .item-1, .item-2, .item-3, .item-4, .item-5 {
+        grid-column: span 1; /* Each item takes up full width */
+    }
+}
+
+@media (max-width: 564px) {
+    .grid-item img{
+        width: 110%;
+        margin: 0px -24px;
+    }
+    .fashion_section{
+        height: 150vh;
+    }
+    div.gradient-div {
+    padding-top: 20%;
+}
+.item-1 .content-overlay{
+    width: 62%;
+    line-height: 8px;
+    bottom: 10%;
+    top: 72%;
+}
+.trending-card{
+    width: 100%;
+}
+
+.blog_section{
+    margin-top: 50rem;
+}
+.trending-top-card{
+	flex-direction: column;
+}
+.trending-top-card img {
+	padding: 10px;
+
+}
+.desktop{
+display: none;
+}
+.mobile{
+    display: none;
+}
+#search_button{
+    right: -7%;
+}
+.sticky #search_button{
+
+    right: 18%;
+}
+footer   .container{
+    flex-direction: column;
+    justify-content: center;
+}
+footer   .container > div{
+    margin-top: 5%;
+}
+.visit-tailor-area::before{
+	width: 100%;
+}
+.avatar img{
+    height: 75px !important;
+    width: 25%;
+}
+.item-1 .content-overlay small, .item-1 .content-overlay span{
+    line-height: 22px;
+}
+.visit-tailor-area{
+    flex-direction: column;
+    margin: 0px 0px !important;
+}
+.visit-tailor-area .tailor-offers{
+    width: 80%;
+    margin: 130px 10px;
+}
+.visit-tailor-area .tailor-details{
+    width: 100% !important;
+    margin-left: -25%;
+}
+div.visit-tailor-area:before{
+    width: 85%;
+
+
+}
+
+
+
+.fashion_blog .container-fluid{
+    flex-direction: column-reverse;
+}
+}
+@media only screen and (min-width: 1200px) and (max-width: 1440px) {
+    .visit-tailor-area {
+        margin: 0px 10px;
+    }
+}
+.visit-tailor-area {
+    position: relative;
+    display: flex
+;
+    align-items: center;
+    margin: 0px 100px;
+}
+.fix {
+    overflow: hidden;
+}
+.visit-tailor-area::before {
+    position: absolute;
+    content: "";
+    background: #d84f3dda;
+    width: 50%;
+    height: 100%;
+    z-index: -9;
+    right: 0;
+    top: 0;
+}
+.visit-tailor-area .tailor-offers {
+    background-image: url(image/fashionb.jpeg);
+    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 570px;
+    width: 50%;
+    margin: 130px 0;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+    .visit-tailor-area .tailor-details {
+        width: 41%;
+    }
+}
+.visit-tailor-area .tailor-details {
+    width: 30%;
+    padding: 20px 20px 20px 60px;
+}
+.visit-tailor-area .tailor-details h2 {
+    font-size: 56px;
+    display: block;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 22px;
+    text-transform: inherit;
+}
+.visit-tailor-area .tailor-details p.pera-top {
+    color: #f9faff;
+    line-height: 1.7;
+    font-size: 18px;
+}
+.visit-tailor-area .tailor-details p.pera-bottom {
+    margin-bottom: 41px;
+    font-size: 22px;
+}
+.btn {
+    border: none;
+    padding: 24px 47px;
+    text-transform: uppercase;
+    border-radius: 0px;
+    letter-spacing: 2px;
+    cursor: pointer;
+
+    color: #d8503d;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    background-size: 200%;
+    transition: 0.6s;
+    background-color: white;
+
+}
+.fashion_section{
+    margin: 0;
+            padding: 0;
+            padding-top: 5px;
+ height: 60vw;
+ background-color: rgb(68, 65, 65);
+            overflow: hidden;
+}
+
+
+
+
+.blog_section {
+  background: #f5f7f8;
+  font-family: system-ui;
+  -webkit-font-smoothing: antialiased;
+  padding: 20px 0;
+  margin-top: 10%;
+}
+
+.blog_section header{
+  width: 90%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.gallery {
+  width: 90%;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+}
+
+@media (min-width: 30em) {
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 60em) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.gallery-card {
+  background: white;
+  text-decoration: none;
+  color: #444;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 80%;
+  position: relative;
+  top: 0;
+  transition: all 0.1s ease-in;
+}
+
+.gallery-card:hover {
+  top: -2px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+.read-post-btn{
+padding: 5px 16px;
+display: inline-block;
+color: white;
+border: none;
+font-family: poppins;
+border-radius: 20px;
+background-color: #d8503d;
+transition: all 0.3s ease;
+}
+.read-post-btn span{
+    margin: 0px 5px;
+}
+.read-post-btn:hover{
+    background-color: white;
+    border: 1px solid #d8503d;
+    color: #d8503d;
+}
+.gallery-card article {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gallery-card h1 {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+}
+
+.gallery-card p {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.gallery-card span {
+  font-size: 12px;
+  font-weight: bold;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 2em 0 0 0;
+}
+
+.gallery-thumb {
+  padding-bottom: 60%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.gallery-item-1 {
+  @media (min-width: 60em) {
+    grid-column: 1 / span 2;
+  }
+}
+
+.gallery-item-1 h1 {
+  @media (min-width: 60em) {
+    font-size: 24px;
+  }
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px; /* Adds consistent space between avatar and text */
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.author-name-time {
+
+  flex-direction: column;
+  font-size: small; /* Ensures text size is small */
+
+}
+
+.author-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.author-time {
+  color: #999;
+  font-size: smaller; /* Slightly smaller than the name */
+}
+
+.pin_container {
+            margin: 0;
+            padding: 0;
+            width: 60%;
+            position: relative;
+            left: 27%;
+            transform: translateX(-50%);
+            display: grid;
+            grid-template-columns: repeat(auto-fill, var(--card_width));
+            grid-auto-rows: var(--row_increment);
+            justify-content: center;
+
+        }
+
+        .pin_container .card {
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            margin: 15px 10px;
+            border-radius: var(--card_border_radius);
+
+        }
+
+        .pin_container .card_small {
+            grid-row-end: span var(--card_small);
+        }
+
+        .pin_container .card_medium {
+            grid-row-end: span var(--card_medium);
+        }
+
+        .pin_container  .card_large {
+            grid-row-end: span var(--card_large);
+        }
+        .pin_container  .card_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the card area */
+}
+
+/* Card Image Styling */
+.pin_container .card_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the card area */
+}
+
+/* Overlay Styling */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent overlay */
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* Card Content (text) Styling */
+.card_content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    z-index: 1; /* Ensures content is above the overlay */
+}
+
+.designer_name {
+    font-size: 20px;  /* Larger text for designer name */
+    font-weight: bold;
+    margin: 0;
+}
+
+.company_name {
+    font-size: 12px;  /* Smaller text for company name */
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.social_links {
+    display: flex;
+    gap: 10px;
+}
+
+.social_link {
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social_link.instagram {
+    color: #000000;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.social_link.facebook {
+    color: #000000;
+    background-color: white;
+    padding: 5px 12px;
+    border-radius: 50px;
+}
+
+.social_link:hover {
+    color: #ff9e9e; /* Change color on hover */
+}
+.footer_social_icons{
+    width: 250px;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.fashion_text {
+      text-align: left;
+      padding: 30px;
+      background-color: #fff;
+
+
+      max-width: 600px;
+      border-radius: 10px;
+    }
+
+    .fashion_text h1 {
+      font-size: 2.5rem;
+      color: #222;
+      margin-bottom: 15px;
+    }
+
+    .fashion_text p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      text-align: center;
+    }
+
+    .button-container button {
+      background-color: #ff6f61;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-container button:hover {
+      background-color: #e55a4d;
+    }
+    .trending-card {
+            display: flex;
+            width: 80%;
+            margin: 0px auto;
+            align-items: center;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .trending-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        .trending-card .text-content {
+            flex: 1;
+        }
+        .trending-card .hashtag {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .trending-top-card {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 20px;
+
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .trending-top-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 25px;
+            margin-right: 20px;
+        }
+        .trending-top-card .text-content h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        footer{
+            background-color: #000000;
+             color: #fff;
+              padding: 40px 0;
+               font-family: Arial, sans-serif;
+        }
+
+        footer   .container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    flex: 1;
+    max-width: 250px;
+}
+
+.footer-logo img {
+    max-width: 50%;
+    height: auto;
+}
+
+.footer-logo p {
+    font-size: 14px;
+    color: #ccc;
+    margin-top: 10px;
+}
+
+.footer-links {
+    flex: 1;
+    max-width: 250px;
+}
+
+.footer-links h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.footer-links span {
+    font-size: 12px;
+}
+
+.footer-newsletter {
+    flex: 1;
+    max-width: 250px;
+}
+
+.footer-newsletter h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-newsletter form {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-newsletter input {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+.footer-newsletter button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footer-socials {
+    flex: 1;
+    max-width: 250px;
+}
+
+.footer-socials h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer_social_icons a {
+    color: #fff;
+    font-size: 20px;
+    margin-right: 10px;
+}
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+            <img src="logo-removebg-preview.png" style="width: 60px; height: 60px;">
+        </a>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <a class="nav-link" href="#trending">Home</a>
+            <a class="nav-link" href="#about">About</a>
+             <a class="nav-link" href="#blog-stories">Blog</a>
+             <a class="nav-link" href="#blog-stories">Trending</a>
+             <a class="nav-link" href="#fashion-story">Fashion story</a>
+             <a class="nav-link" href="#blog-stories">tutorial</a>
+            <div class="search-container mobile" >
+                <input class="search-input" type="text" placeholder="Search" aria-label="Search">
+               <span id="search_button">
+                <i class="bi bi-search search-icon"></i>
+               </span>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container desktop" >
+            <input class="search-input" type="text" placeholder="Search" aria-label="Search">
+           <span id="search_button">
+            <i class="bi bi-search search-icon"></i>
+           </span>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid" style="position:absolute; top: 10%;">
+        <div class="push">
+               <!-- Header Section -->
+        <div class="text-center">
+            <h1 style="margin-top: 10%;">Fashion Courses & Designers</h1>
+            <p class="lead">Explore top fashion courses and the designers behind them</p>
+        </div>
+
+        <!-- Course and Tailor Cards Section -->
+        <section>
+            <h2 class="mb-4">Top Fashion Courses</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <!-- Course 1 -->
+                        <div class="col-md-4 mb-4" style="position:relative;">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sustainable Fashion Design</h5>
+                                    <img src="original-2d4dad6fbb2198a6928d8c2e0a847b72.jpg" alt="Course Image" class="img-fluid card-img-top">
+                                  
+                                </div>
+                              
+                            </div>
+                            <div class="translate">
+                                <div class="translate2">
+                                    <img src="a-web-design-section-with-an-engaging-im_1vqTCMp8S7CvZ7sfyuN4Cw_op4d28zwTT-Y3bqQo1kvFg.jpeg">
+                                </div>
+                                <div class="translate2">
+                                    <span class="tagname">leomam</span>
+                                    <span class="rating">⭐⭐⭐⭐</span> 
+                                    <span>(85 Reviews)</span> 
+                                    <div class="social_i">
+                                        <a href="#" class="social_icon"><i class="bi bi-scissors"></i></i></a>
+                                        <a href="#" class="social_icon"><i class="bi bi-eye"></i>200</a>
+                                    </div>                 
+                            </div>
+                       
+                        </div>
+                             <div class="views">
+                                <a class="view_span"><i class="bi bi-arrow-right"></i> <!-- Right Arrow Icon -->
+                                </a>
+        
+                            </div>
+                        </div>
+                 
+                        <!-- Course 2 -->
+                        <div class="col-md-4 mb-4" style="position:relative;">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sustainable Fashion Design</h5>
+                                    <img src="original-2d4dad6fbb2198a6928d8c2e0a847b72.jpg" alt="Course Image" class="img-fluid card-img-top">
+                                  
+                                </div>
+                              
+                            </div>
+                            <div class="translate">
+                                <div class="translate2">
+                                    <img src="a-web-design-section-with-an-engaging-im_1vqTCMp8S7CvZ7sfyuN4Cw_op4d28zwTT-Y3bqQo1kvFg.jpeg">
+                                </div>
+                                <div class="translate2">
+                                    <span class="tagname">leomam</span>
+                                    <span class="rating">⭐⭐⭐⭐</span> 
+                                    <span>(85 Reviews)</span> 
+                                    <div class="social_i">
+                                        <a href="#" class="social_icon"><i class="bi bi-scissors"></i></i></a>
+                                        <a href="#" class="social_icon"><i class="bi bi-eye"></i>200</a>
+                                    </div>                 
+                            </div>
+                       
+                        </div>
+                             <div class="views">
+                                <a class="view_span"><i class="bi bi-arrow-right"></i> <!-- Right Arrow Icon -->
+                                </a>
+        
+                            </div>
+                        </div>
+                 
+                        <!-- Course 3 -->
+                        <div class="col-md-4 mb-4" style="position: relative;">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sustainable Fashion Design</h5>
+                                    <img src="original-2d4dad6fbb2198a6928d8c2e0a847b72.jpg" alt="Course Image" class="img-fluid card-img-top">
+                                  
+                                </div>
+                              
+                            </div>
+                            <div class="translate">
+                                <div class="translate2">
+                                    <img src="a-web-design-section-with-an-engaging-im_1vqTCMp8S7CvZ7sfyuN4Cw_op4d28zwTT-Y3bqQo1kvFg.jpeg">
+                                </div>
+                                <div class="translate2">
+                                    <span class="tagname">leomam</span>
+                                    <span class="rating">⭐⭐⭐⭐</span> 
+                                    <span>(85 Reviews)</span> 
+                                    <div class="social_i">
+                                        <a href="#" class="social_icon"><i class="bi bi-scissors"></i></i></a>
+                                        <a href="#" class="social_icon"><i class="bi bi-eye"></i>200</a>
+                                    </div>    
+                                    price: N30,000             
+                            </div>
+                       
+                        </div>
+                             <div class="views">
+                                <a class="view_span"><i class="bi bi-arrow-right"></i> <!-- Right Arrow Icon -->
+                                </a>
+        
+                            </div>
+                        </div>
+                          <!-- Course 3 -->
+                          <div class="col-md-4 mb-4" style="position:relative;">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sustainable Fashion Design</h5>
+                                    <img src="original-2d4dad6fbb2198a6928d8c2e0a847b72.jpg" alt="Course Image" class="img-fluid card-img-top">
+                                  
+                                </div>
+                              
+                            </div>
+                            <div class="translate">
+                                <div class="translate2">
+                                    <img src="a-web-design-section-with-an-engaging-im_1vqTCMp8S7CvZ7sfyuN4Cw_op4d28zwTT-Y3bqQo1kvFg.jpeg">
+                                </div>
+                                <div class="translate2">
+                                    <span class="tagname">leomam</span>
+                                    <span class="rating">⭐⭐⭐⭐</span> 
+                                    <span>(85 Reviews)</span> 
+                                    <div class="social_i">
+                                        <a href="#" class="social_icon"><i class="bi bi-scissors"></i></i></a>
+                                        <a href="#" class="social_icon"><i class="bi bi-eye"></i>200</a>
+                                    </div>                 
+                            </div>
+                       
+                        </div>
+                             <div class="views">
+                                <a class="view_span"><i class="bi bi-arrow-right"></i> <!-- Right Arrow Icon -->
+                                </a>
+        
+                            </div>
+                        </div>
+                          <!-- Course 3 -->
+                          <div class="col-md-4 mb-4" style="position:relative;">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sustainable Fashion Design</h5>
+                                    <img src="original-2d4dad6fbb2198a6928d8c2e0a847b72.jpg" alt="Course Image" class="img-fluid card-img-top">
+                                  
+                                </div>
+                              
+                            </div>
+                            <div class="translate">
+                                <div class="translate2">
+                                    <img src="a-web-design-section-with-an-engaging-im_1vqTCMp8S7CvZ7sfyuN4Cw_op4d28zwTT-Y3bqQo1kvFg.jpeg">
+                                </div>
+                                <div class="translate2">
+                                    <span class="tagname">leomam</span>
+                                    <span class="rating">⭐⭐⭐⭐</span> 
+                                    <span>(85 Reviews)</span> 
+                                    <div class="social_i">
+                                        <a href="#" class="social_icon"><i class="bi bi-scissors"></i></i></a>
+                                        <a href="#" class="social_icon"><i class="bi bi-eye"></i>200</a>
+                                    </div>                 
+                            </div>
+                       
+                        </div>
+                        <div class="views">
+                            <a class="view_span"><i class="bi bi-arrow-right"></i> <!-- Right Arrow Icon -->
+                            </a>
+    
+                        </div>
+                        </div>
+                          <!-- Course 3 -->
+                          <div class="col-md-4 mb-4" style="position: relative;">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sustainable Fashion Design</h5>
+                                    <img src="original-2d4dad6fbb2198a6928d8c2e0a847b72.jpg" alt="Course Image" class="img-fluid card-img-top">
+                                  
+                                </div>
+                              
+                            </div>
+                            <div class="translate">
+                                <div class="translate2">
+                                    <img src="a-web-design-section-with-an-engaging-im_1vqTCMp8S7CvZ7sfyuN4Cw_op4d28zwTT-Y3bqQo1kvFg.jpeg">
+                                </div>
+                                <div class="translate2">
+                                    <span class="tagname">leomam</span>
+                                    <span class="rating">⭐⭐⭐⭐</span> 
+                                    <span>(85 Reviews)</span> 
+                                    <div class="social_i">
+                                        <a href="#" class="social_icon"><i class="bi bi-scissors"></i></i></a>
+                                        <a href="#" class="social_icon"><i class="bi bi-eye"></i>200</a>
+                                    </div>                 
+                            </div>
+                       
+                        </div>
+                       
+                     
+                        <div class="views">
+                            <a class="view_span"><i class="bi bi-arrow-right"></i> <!-- Right Arrow Icon -->
+                            </a>
+  
+                        </div>
+                    
+                    </div>
+                 
+        </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <!-- Course 1 -->
+                        <div class="col-md-12 mb-4" style="position:relative;">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sustainable Fashion Design</h5>
+                                    <img src="original-2d4dad6fbb2198a6928d8c2e0a847b72.jpg" alt="Course Image" class="img-fluid card-img-top">
+                                  
+                                </div>
+                              
+                            </div>
+                            <div class="translate">
+                                <div class="translate2">
+                                    <img src="a-web-design-section-with-an-engaging-im_1vqTCMp8S7CvZ7sfyuN4Cw_op4d28zwTT-Y3bqQo1kvFg.jpeg">
+                                </div>
+                                <div class="translate2">
+                                    <span class="tagname">leomam</span>
+                                    <span class="rating">⭐⭐⭐⭐</span> 
+                                    <span>(85 Reviews)</span> 
+                                    <div class="social_i">
+                                        <a href="#" class="social_icon"><i class="bi bi-scissors"></i></i></a>
+                                        <a href="#" class="social_icon"><i class="bi bi-eye"></i>200</a>
+                                    </div>                 
+                            </div>
+                       
+                        </div>
+                      
+                        </div>
+                 
+                        <!-- Course 2 -->
+                        <div class="col-md-12 mb-4" style="relative">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sustainable Fashion Design</h5>
+                                    <img src="original-2d4dad6fbb2198a6928d8c2e0a847b72.jpg" alt="Course Image" class="img-fluid card-img-top">
+                                  
+                                </div>
+                              
+                            </div>
+                            <div class="translate">
+                                <div class="translate2">
+                                    <img src="a-web-design-section-with-an-engaging-im_1vqTCMp8S7CvZ7sfyuN4Cw_op4d28zwTT-Y3bqQo1kvFg.jpeg">
+                                </div>
+                                <div class="translate2">
+                                    <span class="tagname">leomam</span>
+                                    <span class="rating">⭐⭐⭐⭐</span> 
+                                    <span>(85 Reviews)</span> 
+                                    <div class="social_i">
+                                        <a href="#" class="social_icon"><i class="bi bi-scissors"></i></i></a>
+                                        <a href="#" class="social_icon"><i class="bi bi-eye"></i>200</a>
+                                    </div>                 
+                            </div>
+                       
+                        </div>
+                          
+                        </div>
+                 
+                     
+                        
+                 
+        </div>
+                </div>
+            </div>
+
+
+        </section>
+        </div>
+     
+    </div>
+
+    <!-- Link to Bootstrap JS, Popper, and Tooltip -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Initialize Bootstrap tooltips
+        var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    
+// Add sticky class when the user scrolls
+window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 0) {
+        navbar.classList.add('sticky');
+    } else {
+        navbar.classList.remove('sticky');
+    }
+});
+
+// Toggle mobile menu
+function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('show');
+}
+    </script>
+    
+</body>
+</html>
